@@ -2,3 +2,9 @@ name: MagmaMoney
 version: 1.0
 author: Wolf_IV
 main: com.Wolf_IV.MagmaMoney.MainM
+commands:
+  shop:
+    description: Create Shop
+  mgive:
+    description: Gives money
+    permission: mgive.use
