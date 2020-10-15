@@ -5,6 +5,8 @@ main: com.Wolf_IV.MagmaMoney.MainM
 commands:
   shop:
     description: Create Shop
+  recup:
+    description: Recup Magma
   mgive:
     description: Gives money
     permission: mgive.use

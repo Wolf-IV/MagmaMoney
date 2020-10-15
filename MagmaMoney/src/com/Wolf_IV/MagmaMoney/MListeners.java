@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
@@ -19,6 +20,7 @@ public class MListeners implements Listener {
 	int invSaveMaxUser =100;//a augementer si on est plus que indiquer
 	InventoryClickEvent[] invSave =new InventoryClickEvent[invSaveMaxUser];
 	int[] itemBSlot =new int[invSaveMaxUser];
+	int point= 0;
 	
 	private MainM main;
 	public MListeners(MainM mainM) {
@@ -28,7 +30,19 @@ public class MListeners implements Listener {
 		/* Chest state = (Chest) e.getClickedBlock().getState();
         Inventory chest = state.getInventory();*/
 	
-	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		Player player = event.getPlayer();
+		player.sendMessage("§aBienvenue "+player.getName()+" sur MoulaBeo");
+		try {
+			//Le code lit mal apprendre a lire bien
+			Read.read(player.getUniqueId());
+			point = Read.point;
+			player.sendMessage("§dTu a "+Read.point+" Magma en reserve fais /recup pour les recupérer");
+		} catch (Exception e) {
+			
+		}
+	}
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
