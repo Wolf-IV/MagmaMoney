@@ -126,7 +126,6 @@ public class MListeners implements Listener {
 				}
 			}
 			
-			Bukkit.broadcastMessage("AAAA");
 			
 		/*if(inV.getTitle().substring(0, 1) == "§1" || playerNCh.equalsIgnoreCase(inV.getTitle().substring(3))) {
 			return;

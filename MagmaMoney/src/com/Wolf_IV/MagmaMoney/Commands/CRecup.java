@@ -3,6 +3,7 @@ package com.Wolf_IV.MagmaMoney.Commands;
 import java.io.IOException;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
@@ -18,6 +19,7 @@ import com.Wolf_IV.MagmaMoney.Read;
 import com.Wolf_IV.MagmaMoney.Write;
 
 public class CRecup implements CommandExecutor {
+	
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
@@ -35,21 +37,37 @@ public class CRecup implements CommandExecutor {
 					int x = (int) (player.getLocation().getX()+rand.nextInt(100)-50);
 					int y;
 					int z = (int) (player.getLocation().getZ()+rand.nextInt(100)-50);
-					for(y = 255; y<=0 ; y--) {
+					for(y = 255; y>0 ; y--) {
 						Location locB =new Location(player.getWorld(), x, y, z);
 						if(locB.getBlock().getType() != Material.AIR) {
 							locB=new Location(player.getWorld(), x, y+1, z);
 							locB.getBlock().setType(Material.CHEST);
-							Chest state = (Chest) locB.getBlock();
+							Chest state = (Chest) locB.getBlock().getState();
 					        Inventory chest = state.getInventory();
-					        ItemStack Magma = new ItemStack(Material.LEGACY_SKULL_ITEM, Read.point);
+					        int[] stackSecu =new int[27];
+					        for(int i = 0; i<=26; i++) {
+					        if(Read.point>64) {
+					        ItemStack Magma = new ItemStack(Material.LEGACY_SKULL_ITEM, 64);
 			                Magma.setDurability((short)3);
 			                SkullMeta sm = (SkullMeta) Magma.getItemMeta();
 			                sm.setOwner("PrestonPlayz");
 			                sm.setDisplayName(CMgive.MagmaName);
 			                Magma.setItemMeta(sm);
-					        chest.setItem(13, Magma);
+					        chest.setItem(i, Magma);
+					        Read.point = Read.point-64;
+					        }else {
+					        	ItemStack Magma = new ItemStack(Material.LEGACY_SKULL_ITEM, Read.point);
+				                Magma.setDurability((short)3);
+				                SkullMeta sm = (SkullMeta) Magma.getItemMeta();
+				                sm.setOwner("PrestonPlayz");
+				                sm.setDisplayName(CMgive.MagmaName);
+				                Magma.setItemMeta(sm);
+						        chest.setItem(i, Magma);
+						        i=27;
+					        }
+					        }
 					        Write.write(player.getUniqueId(), 0, Read.stats);
+					        return true;
 						}
 					}
 					player.sendMessage("§4Le coffre ne s'est pas placé veuiller reaissyer");
