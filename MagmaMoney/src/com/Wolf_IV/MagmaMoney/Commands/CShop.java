@@ -24,7 +24,6 @@ public class CShop implements CommandExecutor {
 				}
 				if(player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("shop")) {
 					int nubArg = 0;
-					Bukkit.broadcastMessage("1");
 					String pE =null;
 					if(args.length>=1) {
 						StringBuilder bc = new StringBuilder();
@@ -34,20 +33,15 @@ public class CShop implements CommandExecutor {
 						}
 						pE = bc.toString();
 					}
-					Bukkit.broadcastMessage("3");
 					ItemStack shop = player.getItemInHand();
 	    			ItemMeta customShop =shop.getItemMeta();
 	    			if(pE != null) {
-	    				Bukkit.broadcastMessage("3.5");
-	    			customShop.setDisplayName("§"+(nubArg+1)+"|§6Shop de: "+player.getDisplayName()+" "+pE);//fait gaffe de le changer aussi dans la method on Interact
+	    			customShop.setDisplayName("§"+(nubArg+1)+"|§6Shop de: "+player.getDisplayName()+" "+pE+" §"+(nubArg+1)+"|");//fait gaffe de le changer aussi dans la method on Interact
 	    			}else {
-	    				Bukkit.broadcastMessage("3.5Nnm");
-	    				customShop.setDisplayName("§1|§6Shop de: "+player.getDisplayName());
+	    				customShop.setDisplayName("§1|§6Shop de: "+player.getDisplayName()+" §1|");
 	    			}
-	    			Bukkit.broadcastMessage("4");
 	    			shop.setItemMeta(customShop);
 					player.setItemInHand(shop);
-					Bukkit.broadcastMessage("5");
 				}else {
 					player.sendMessage("§4Votre item ne sappelle pas shop pour le transformé appleler le shop");
 				}

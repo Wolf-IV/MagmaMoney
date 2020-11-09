@@ -45,11 +45,19 @@ public static String MagmaName = "§6Magma";
     			customBallon1.setDisplayName("§3|§6Shop de: Donteg_ Wolf_IV Sharky");//fait gaffe de le changer aussi dans la method on Interact
     			customBallon1.setLore(Arrays.asList("§cAvec un simple clic droit ", "lancez un WaterBaloon"));
     			Ballon1.setItemMeta(customBallon1);
+    			
+    			ItemStack HammerBook = new ItemStack(Material.ENCHANTED_BOOK);
+    			ItemMeta customHammerBook =HammerBook.getItemMeta();
+    			customHammerBook.setLore(Arrays.asList("§8Hammer"));
+    			HammerBook.setItemMeta(customHammerBook);
+    			
+    			
 			
 				
 				player.getInventory().addItem(Magma);
 				player.getInventory().addItem(Ballon);
 				player.getInventory().addItem(Ballon1);
+				player.getInventory().addItem(HammerBook);
 			return true;
 			}
 			
